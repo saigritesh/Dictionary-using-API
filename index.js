@@ -3,10 +3,10 @@ const axios = require('axios');
 const app = express();
 const PORT = 3000;
 
-// Serve static files from the "public" directory
+
 app.use(express.static('public'));
 
-// Middleware to parse URL-encoded bodies
+
 app.use(express.urlencoded({ extended: true }));
 
 app.get('/', (req, res) => {
@@ -19,7 +19,7 @@ app.get('/define', async (req, res) => {
         res.redirect('/');
         return;
     }
-    const apiKey = 'YOUR_API_KEY';  // Replace with your dictionary API key
+    const apiKey = 'YOUR_API_KEY';  
     const url = `https://api.dictionaryapi.dev/api/v2/entries/en/${word}`;
 
     try {
@@ -32,10 +32,6 @@ app.get('/define', async (req, res) => {
                     <link rel="stylesheet" href="/style.css">
                 </head>
                 <body>
-                    <nav>
-                        <a href="/">Home</a>
-                        <a href="#suggestions">Suggestions</a>
-                    </nav>
                     <h1>Dictionary</h1>
                     <form action="/define" method="post">
                         <input type="text" name="word" placeholder="Enter a word" required>
@@ -45,7 +41,7 @@ app.get('/define', async (req, res) => {
                         <h2>Definition of ${word}:</h2>
                         <p>${definition}</p>
                     </div>
-                    <div class="suggestions" id="suggestions">
+                    <div class="suggestions">
                         <h3>Try these words:</h3>
                         <ul>
                             <li><a href="/define?word=example">example</a></li>
@@ -55,6 +51,16 @@ app.get('/define', async (req, res) => {
                             <li><a href="/define?word=creativity">creativity</a></li>
                         </ul>
                     </div>
+                    <button class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+                    <nav>
+                        <a href="/">Home</a>
+                        <a href="#suggestions">Suggestions</a>
+                    </nav>
+                    <script>
+                        function toggleDarkMode() {
+                            document.body.classList.toggle('dark-mode');
+                        }
+                    </script>
                 </body>
             </html>
         `);
@@ -66,10 +72,6 @@ app.get('/define', async (req, res) => {
                     <link rel="stylesheet" href="/style.css">
                 </head>
                 <body>
-                    <nav>
-                        <a href="/">Home</a>
-                        <a href="#suggestions">Suggestions</a>
-                    </nav>
                     <h1>Dictionary</h1>
                     <form action="/define" method="post">
                         <input type="text" name="word" placeholder="Enter a word" required>
@@ -78,7 +80,7 @@ app.get('/define', async (req, res) => {
                     <div class="result">
                         <h2>Word not found</h2>
                     </div>
-                    <div class="suggestions" id="suggestions">
+                    <div class="suggestions">
                         <h3>Try these words:</h3>
                         <ul>
                             <li><a href="/define?word=example">example</a></li>
@@ -88,6 +90,16 @@ app.get('/define', async (req, res) => {
                             <li><a href="/define?word=creativity">creativity</a></li>
                         </ul>
                     </div>
+                    <button class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+                    <nav>
+                        <a href="/">Home</a>
+                        <a href="#suggestions">Suggestions</a>
+                    </nav>
+                    <script>
+                        function toggleDarkMode() {
+                            document.body.classList.toggle('dark-mode');
+                        }
+                    </script>
                 </body>
             </html>
         `);
