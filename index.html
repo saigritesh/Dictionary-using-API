@@ -7,16 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <nav>
-        <a href="/">Home</a>
-        <a href="#suggestions">Suggestions</a>
-    </nav>
     <h1>Dictionary</h1>
     <form action="/define" method="post">
         <input type="text" name="word" placeholder="Enter a word" required>
         <button type="submit">Search</button>
     </form>
-    <div class="suggestions" id="suggestions">
+    <div class="suggestions">
         <h3>Try these words:</h3>
         <ul>
             <li><a href="/define?word=example">example</a></li>
@@ -26,5 +22,15 @@
             <li><a href="/define?word=creativity">creativity</a></li>
         </ul>
     </div>
+    <button class="toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
+    <nav>
+        <a href="/">Home</a>
+        <a href="#suggestions">Suggestions</a>
+    </nav>
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+    </script>
 </body>
 </html>
